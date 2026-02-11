@@ -1,4 +1,4 @@
-# NSFW Grok → Pro-Level Prompt
+# Grok Image Describer Pro
 
 - Node ID: `NSFWGrokDescriberPro`
 - Class: `NSFWGrokDescriberPro`

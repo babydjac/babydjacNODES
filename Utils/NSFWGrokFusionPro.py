@@ -84,5 +84,5 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "NSFWGrokFusionPro": "NSFW Grok Fusion Pro"
+    "NSFWGrokFusionPro": "Grok Prompt Fusion Pro"
 }

@@ -58,5 +58,5 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "NSFWGrokToPonyXL": "NSFW Grok to PonyXL",
+    "NSFWGrokToPonyXL": "Grok to PonyXL Prompt",
 }

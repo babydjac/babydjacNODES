@@ -90,9 +90,9 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "FluxLifestylePromptNode": "Flux Lifestyle Prompt Node",
     "FluxLambdaPrompter": "Flux Lambda Prompter",
     "GrokPonyXLPrompter": "Grok PonyXL Prompter",
-    "NSFWGrokToPonyXL": "NSFW Grok to PonyXL",
+    "NSFWGrokToPonyXL": "Grok to PonyXL Prompt",
     "QwenImagePrompter": "Qwen Image Prompter",
-    "NSFWGrokDescriberPro": "NSFW Grok → Pro-Level Prompt",
+    "NSFWGrokDescriberPro": "Grok Image Describer Pro",
     "GrokFluxPromptOptimizer": "Grok Flux Prompt Optimizer",
     "SafeTagListPromptNode": "Safe Tag List Prompt",
     "TemplateDrivenTagListPromptNode": "Template Driven Taglist",
@@ -103,7 +103,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "NoRepeatPickerNode": "No-Repeat Picker",
     "TextCacheNode": "Text Cache",
     "HTTPJsonNode": "HTTP JSON",
-    "NSFWGrokFusionPro": "NSFW Grok Fusion Pro",
+    "NSFWGrokFusionPro": "Grok Prompt Fusion Pro",
     "DynamicPromptBatcher": "Prompt Rotator (Dynamic Batch)",
 }
 

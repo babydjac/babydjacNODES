@@ -15,7 +15,7 @@ Total nodes: **25**
 ### `babydjacNODES/Analyze`
 
 - **Grok Flux Prompt Optimizer** (`GrokFluxPromptOptimizer`): Optimizes an existing Flux prompt from image context and user edit instructions. ([docs](docs/nodes/GrokFluxPromptOptimizer.md))
-- **NSFW Grok → Pro-Level Prompt** (`NSFWGrokDescriberPro`): Returns expanded descriptive prompt outputs from an image and instruction set. ([docs](docs/nodes/NSFWGrokDescriberPro.md))
+- **Grok Image Describer Pro** (`NSFWGrokDescriberPro`): Returns expanded descriptive prompt outputs from an image and instruction set. ([docs](docs/nodes/NSFWGrokDescriberPro.md))
 
 ### `babydjacNODES/Latents/Interactive`
 
@@ -39,7 +39,7 @@ Total nodes: **25**
 ### `babydjacNODES/Prompting/PonyXL`
 
 - **Grok PonyXL Prompter** (`GrokPonyXLPrompter`): Analyzes an input image with Grok Vision and returns PonyXL-style prompt/negative tags. ([docs](docs/nodes/GrokPonyXLPrompter.md))
-- **NSFW Grok to PonyXL** (`NSFWGrokToPonyXL`): Transforms freeform prompt text into PonyXL-friendly positive/negative/tag outputs. ([docs](docs/nodes/NSFWGrokToPonyXL.md))
+- **Grok to PonyXL Prompt** (`NSFWGrokToPonyXL`): Transforms freeform prompt text into PonyXL-friendly positive/negative/tag outputs. ([docs](docs/nodes/NSFWGrokToPonyXL.md))
 
 ### `babydjacNODES/Prompting/WAN-2.2`
 
@@ -58,9 +58,9 @@ Total nodes: **25**
 
 ### `babydjacNODES/Utils`
 
+- **Grok Prompt Fusion Pro** (`NSFWGrokFusionPro`): Combines and weights multiple prompt fragments with style presets and annotation output. ([docs](docs/nodes/NSFWGrokFusionPro.md))
 - **HTTP JSON** (`HTTPJsonNode`): Makes HTTP requests and returns response text for API-backed workflows. ([docs](docs/nodes/HTTPJsonNode.md))
 - **No-Repeat Picker** (`NoRepeatPickerNode`): Selects items from a multiline list while persisting no-repeat history. ([docs](docs/nodes/NoRepeatPickerNode.md))
-- **NSFW Grok Fusion Pro** (`NSFWGrokFusionPro`): Combines and weights multiple prompt fragments with style presets and annotation output. ([docs](docs/nodes/NSFWGrokFusionPro.md))
 - **Prompt Merge** (`PromptMergeNode`): Merges multiple tag lists with optional dedupe, case normalization, sorting, and truncation. ([docs](docs/nodes/PromptMergeNode.md))
 - **Taglist Sanitizer** (`TaglistSanitizerNode`): Sanitizes tag lists (dedupe, lowercase, strip weights, sort). ([docs](docs/nodes/TaglistSanitizerNode.md))
 - **Text Cache** (`TextCacheNode`): Small key/value text cache node with get/set/delete operations. ([docs](docs/nodes/TextCacheNode.md))

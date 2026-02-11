@@ -1,4 +1,4 @@
-# NSFW Grok to PonyXL
+# Grok to PonyXL Prompt
 
 - Node ID: `NSFWGrokToPonyXL`
 - Class: `NSFWGrokToPonyXL`

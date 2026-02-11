@@ -1,4 +1,4 @@
-# NSFW Grok Fusion Pro
+# Grok Prompt Fusion Pro
 
 - Node ID: `NSFWGrokFusionPro`
 - Class: `NSFWGrokFusionPro`
