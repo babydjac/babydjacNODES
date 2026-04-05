@@ -65,13 +65,20 @@ class NSFWGrokDescriberPro:
 
     def process(self, image, api_key, prepend_text, append_text, score_strategy, debug_output):
         try:
+            final_key = (api_key or "").strip() or os.getenv("XAI_API_KEY", "").strip() or os.getenv("GROK_API_KEY", "").strip()
+            if not final_key:
+                return (
+                    "[Error] Missing API key: set the node api_key input or XAI_API_KEY / GROK_API_KEY in the environment.",
+                    "[NO PROMPT]",
+                    "[NO NEGATIVE PROMPT]",
+                )
+
             img_np = (image[0].cpu().numpy() * 255).astype(np.uint8)
             img_pil = Image.fromarray(img_np)
             buf = io.BytesIO()
             img_pil.save(buf, format="JPEG")
             b64_img = base64.b64encode(buf.getvalue()).decode("utf-8")
 
-            final_key = api_key.strip() or os.getenv("XAI_API_KEY", "missing_key")
             headers = {"Authorization": f"Bearer {final_key}", "Content-Type": "application/json"}
             payload = {
                 "model": "grok-2-vision-1212",
@@ -84,7 +91,9 @@ class NSFWGrokDescriberPro:
                 ]
             }
 
-            r = requests.post("https://api.x.ai/v1/chat/completions", headers=headers, json=payload)
+            r = requests.post(
+                "https://api.x.ai/v1/chat/completions", headers=headers, json=payload, timeout=60
+            )
             if r.status_code != 200:
                 return (f"[XAI ERROR {r.status_code}] {r.text}", "[NO PROMPT]", "[NO NEGATIVE PROMPT]")
 
@@ -99,11 +108,3 @@ class NSFWGrokDescriberPro:
             return (description, full_prompt, self.get_negative_prompt())
         except Exception as e:
             return (f"[Processing Error] {str(e)}", "[NO PROMPT]", "[NO NEGATIVE PROMPT]")
-
-NODE_CLASS_MAPPINGS = {
-    "NSFWGrokDescriberPro": NSFWGrokDescriberPro,
-}
-
-NODE_DISPLAY_NAME_MAPPINGS = {
-    "NSFWGrokDescriberPro": "Grok Image Describer Pro",
-}

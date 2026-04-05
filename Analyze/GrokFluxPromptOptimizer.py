@@ -1,10 +1,11 @@
-import torch
 import base64
 import io
-import json
-import requests
-from PIL import Image
+import os
+
 import numpy as np
+import requests
+import torch
+from PIL import Image
 
 
 class GrokFluxPromptOptimizer:
@@ -41,7 +42,16 @@ class GrokFluxPromptOptimizer:
 
     @classmethod
     def IS_CHANGED(cls, image, user_instruction, api_key, style_preference="photorealistic", detail_level="detailed"):
-        return hash((user_instruction, api_key, style_preference, detail_level, str(image.shape) if hasattr(image, 'shape') else str(image)))
+        resolved = (api_key or "").strip() or os.getenv("XAI_API_KEY", "").strip() or os.getenv("GROK_API_KEY", "").strip()
+        return hash(
+            (
+                user_instruction,
+                resolved,
+                style_preference,
+                detail_level,
+                str(image.shape) if hasattr(image, "shape") else str(image),
+            )
+        )
 
     def image_to_base64(self, image_tensor, max_pixels=1024*1024, quality=85):
         """Convert ComfyUI image tensor to base64 string for API with compression"""
@@ -155,7 +165,7 @@ Detail level: {detail_level}
 Generate an optimized prompt for Flux Kontext that implements the requested changes in the specified style and detail level."""
 
                     fallback_payload = {
-                        "model": "grok-2-1212",
+                        "model": "grok-3-mini",
                         "messages": [
                             {"role": "system", "content": "You are an expert prompt optimizer for AI image generation models, specifically Flux Kontext."},
                             {"role": "user", "content": fallback_prompt}
@@ -168,7 +178,7 @@ Generate an optimized prompt for Flux Kontext that implements the requested chan
                     if fallback_response.status_code == 200:
                         result = fallback_response.json()
                         return f"[Text-only mode] {result['choices'][0]['message']['content']}"
-                except:
+                except Exception:
                     pass
                 
                 return f"API Error: {response.status_code} - {response.text}. Please check your API key and try again."
@@ -188,9 +198,11 @@ Generate an optimized prompt for Flux Kontext that implements the requested chan
 
     def optimize_prompt(self, image, user_instruction, api_key, style_preference="photorealistic", detail_level="detailed"):
         """Main function to optimize the prompt"""
-        
-        if not api_key or api_key.strip() == "":
-            return ("Error: Please provide a valid Grok API key",)
+        resolved_key = (api_key or "").strip() or os.getenv("XAI_API_KEY", "").strip() or os.getenv("GROK_API_KEY", "").strip()
+        if not resolved_key:
+            return (
+                "Error: Missing API key — set the node api_key input or XAI_API_KEY / GROK_API_KEY in the environment.",
+            )
         
         if not user_instruction or user_instruction.strip() == "":
             return ("Error: Please provide user instructions for the optimization",)
@@ -201,22 +213,14 @@ Generate an optimized prompt for Flux Kontext that implements the requested chan
             
             # Call Grok API
             optimized_prompt = self.call_grok_api(
-                image_base64, 
-                user_instruction, 
-                api_key, 
-                style_preference, 
-                detail_level
+                image_base64,
+                user_instruction,
+                resolved_key,
+                style_preference,
+                detail_level,
             )
             
             return (optimized_prompt,)
             
         except Exception as e:
             return (f"Error: {str(e)}",)
-
-NODE_CLASS_MAPPINGS = {
-    "GrokFluxPromptOptimizer": GrokFluxPromptOptimizer,
-}
-
-NODE_DISPLAY_NAME_MAPPINGS = {
-    "GrokFluxPromptOptimizer": "Grok Flux Prompt Optimizer",
-}

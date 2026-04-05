@@ -1,5 +1,16 @@
 import json
+from urllib.parse import urlparse
+
 import requests
+
+
+def _is_allowed_http_url(url: str) -> bool:
+    parsed = urlparse(url)
+    if parsed.scheme not in ("http", "https"):
+        return False
+    if not parsed.netloc:
+        return False
+    return True
 
 
 class HTTPJsonNode:
@@ -27,6 +38,8 @@ class HTTPJsonNode:
         url = (url or "").strip()
         if not url:
             return ("",)
+        if not _is_allowed_http_url(url):
+            return ("HTTP JSON error: only http and https URLs with a host are allowed.",)
         try:
             headers = json.loads(headers_json) if headers_json else {}
             if not isinstance(headers, dict):
@@ -54,11 +67,3 @@ class HTTPJsonNode:
             return (f"HTTP error: {e}",)
         except Exception as e:
             return (f"Unexpected error: {e}",)
-
-NODE_CLASS_MAPPINGS = {
-    "HTTPJsonNode": HTTPJsonNode,
-}
-
-NODE_DISPLAY_NAME_MAPPINGS = {
-    "HTTPJsonNode": "HTTP JSON",
-}

@@ -10,12 +10,13 @@ Custom ComfyUI nodes for prompting, analysis, latent setup, LoRA loading, taglis
 
 ## Node Index
 
-Total nodes: **25**
+Total nodes: **26**
 
 ### `babydjacNODES/Analyze`
 
-- **Grok Flux Prompt Optimizer** (`GrokFluxPromptOptimizer`): Optimizes an existing Flux prompt from image context and user edit instructions. ([docs](docs/nodes/GrokFluxPromptOptimizer.md))
+- **Grok Image Describer** (`NSFWGrokDescriber`): Vision call that returns a single raw NSFW-oriented description string (lighter than Pro; supports `XAI_API_KEY` / `GROK_API_KEY` when the widget is empty).
 - **Grok Image Describer Pro** (`NSFWGrokDescriberPro`): Returns expanded descriptive prompt outputs from an image and instruction set. ([docs](docs/nodes/NSFWGrokDescriberPro.md))
+- **Grok Flux Prompt Optimizer** (`GrokFluxPromptOptimizer`): Optimizes an existing Flux prompt from image context and user edit instructions. ([docs](docs/nodes/GrokFluxPromptOptimizer.md))
 
 ### `babydjacNODES/Latents/Interactive`
 
@@ -73,5 +74,7 @@ Total nodes: **25**
 ## Notes
 
 - Node colors are assigned by top-level category in the frontend extension.
+- Grok-capable nodes accept `XAI_API_KEY` or `GROK_API_KEY` when the widget `api_key` field is left empty (where implemented).
+- **HTTP JSON** only allows `http`/`https` URLs that include a host (other schemes are rejected).
 - Several nodes call external APIs (xAI/Lambda/HTTP). Review your API keys and usage policies before production use.
 - For node-by-node details, use the linked docs in `docs/nodes/.`

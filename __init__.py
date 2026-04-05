@@ -22,6 +22,7 @@ from .Prompting.PonyXL.NSFWGrokToPonyXL import NSFWGrokToPonyXL
 from .Prompting.QwenImagePrompter import QwenImagePrompter
 
 # Analyze
+from .Analyze.NSFWGrokDescriber import NSFWGrokDescriber
 from .Analyze.NSFWGrokDescriberPro import NSFWGrokDescriberPro
 from .Analyze.GrokFluxPromptOptimizer import GrokFluxPromptOptimizer
 
@@ -60,6 +61,7 @@ NODE_CLASS_MAPPINGS = {
     "QwenImagePrompter": QwenImagePrompter,
 
     # Analyze
+    "NSFWGrokDescriber": NSFWGrokDescriber,
     "NSFWGrokDescriberPro": NSFWGrokDescriberPro,
     "GrokFluxPromptOptimizer": GrokFluxPromptOptimizer,
 
@@ -92,6 +94,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "GrokPonyXLPrompter": "Grok PonyXL Prompter",
     "NSFWGrokToPonyXL": "Grok to PonyXL Prompt",
     "QwenImagePrompter": "Qwen Image Prompter",
+    "NSFWGrokDescriber": "Grok Image Describer",
     "NSFWGrokDescriberPro": "Grok Image Describer Pro",
     "GrokFluxPromptOptimizer": "Grok Flux Prompt Optimizer",
     "SafeTagListPromptNode": "Safe Tag List Prompt",
