@@ -215,12 +215,12 @@ class ZImagePromptLogic:
                 core_prompt += f", {r}"
         
         parts = [core_prompt]
-        if framing != "None": parts.append(cls.FRAMING[framing])
-        if camera != "None": parts.append(cls.CAMERAS[camera])
-        if lighting != "None": parts.append(cls.LIGHTING[lighting])
-        if style != "None": parts.append(cls.STYLES[style])
+        if framing != "None": parts.append(cls.FRAMING.get(framing, ""))
+        if camera != "None": parts.append(cls.CAMERAS.get(camera, ""))
+        if lighting != "None": parts.append(cls.LIGHTING.get(lighting, ""))
+        if style != "None": parts.append(cls.STYLES.get(style, ""))
         
-        final = ", ".join(parts) + ", professional quality, high resolution"
+        final = ", ".join([part for part in parts if part]) + ", professional quality, high resolution"
         
         # Determine params
         cfg, steps = 1.0, 8

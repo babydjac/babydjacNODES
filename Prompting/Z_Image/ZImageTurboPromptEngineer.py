@@ -21,7 +21,7 @@ class ZImageTurboPromptEngineer:
                 "text_input": ("STRING", {"multiline": True, "dynamicPrompts": True, "placeholder": "Enter your concept (e.g., 'cyberpunk street racer')..."}),
                 
                 # Z-Image Specific Controls
-                "style": (list(ZImagePromptLogic.STYLES.keys()), {"default": "Photorealistic"}),
+                "style": (list(ZImagePromptLogic.STYLES.keys()), {"default": "Ultra-sharp hyperrealism"}),
                 "camera": (list(ZImagePromptLogic.CAMERAS.keys()), {"default": "None"}),
                 "lighting": (list(ZImagePromptLogic.LIGHTING.keys()), {"default": "None"}),
                 "framing": (list(ZImagePromptLogic.FRAMING.keys()), {"default": "None"}),
