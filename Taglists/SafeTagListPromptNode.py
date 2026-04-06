@@ -1,4 +1,6 @@
+import os
 import re
+
 import requests
 
 
@@ -49,8 +51,9 @@ class SafeTagListPromptNode:
     def process(self, template_text, custom_idea, api_key, model_name="grok-3-latest", temperature=0.2, safe_mode=True, blocklist=", ".join(DEFAULT_BLOCKLIST)):
         template_text = (template_text or "").strip()
         custom_idea = (custom_idea or "").strip()
+        resolved_key = (api_key or "").strip() or os.getenv("XAI_API_KEY", "").strip() or os.getenv("GROK_API_KEY", "").strip()
 
-        if not api_key:
+        if not resolved_key:
             return ("No API key provided.",)
 
         if not template_text:
@@ -64,7 +67,7 @@ class SafeTagListPromptNode:
 
         headers = {
             "Content-Type": "application/json",
-            "Authorization": f"Bearer {api_key}",
+            "Authorization": f"Bearer {resolved_key}",
         }
 
         system_prompt = (

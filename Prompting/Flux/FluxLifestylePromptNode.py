@@ -1,3 +1,5 @@
+import os
+
 import requests
 
 class FluxLifestylePromptNode:
@@ -17,7 +19,8 @@ class FluxLifestylePromptNode:
     OUTPUT_NODE = True
 
     def generate_prompt(self, prompt, api_key):
-        if not api_key:
+        resolved_key = (api_key or "").strip() or os.getenv("XAI_API_KEY", "").strip() or os.getenv("GROK_API_KEY", "").strip()
+        if not resolved_key:
             return ("Error: API key required.",)
         system_instruction = (
             "You are an expert prompt engineer for Flux/FAL image generation models. "
@@ -25,7 +28,7 @@ class FluxLifestylePromptNode:
             "Include location, model overview, expression, pose, angle, placement, lighting, color palette, and styling with equal detail. "
             "Output ONLY the prompt text with no labels, explanations, or extra formatting."
         )
-        headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
+        headers = {"Authorization": f"Bearer {resolved_key}", "Content-Type": "application/json"}
         payload = {
             "model": "grok-3-latest",
             "messages": [

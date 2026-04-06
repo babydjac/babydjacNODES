@@ -1,5 +1,7 @@
-import requests
 import json
+import os
+
+import requests
 
 class NSFWGrokToPonyXL:
     def __init__(self):
@@ -23,10 +25,11 @@ class NSFWGrokToPonyXL:
     OUTPUT_NODE = True
 
     def generate_prompts(self, description, api_key, motion_type):
-        if not api_key:
+        resolved_key = (api_key or "").strip() or os.getenv("XAI_API_KEY", "").strip() or os.getenv("GROK_API_KEY", "").strip()
+        if not resolved_key:
             return (description, "", "blurry, low_quality, bad_anatomy, oversaturated")
         try:
-            headers = {"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"}
+            headers = {"Content-Type": "application/json", "Authorization": f"Bearer {resolved_key}"}
             data = {
                 "messages": [
                     {

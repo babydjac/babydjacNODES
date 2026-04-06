@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import re
 from typing import Dict, Tuple
 
@@ -42,7 +43,8 @@ class QwenImagePrompter:
 
     def generate_prompt(self, idea: str, api_key: str) -> Tuple[str]:
         idea = (idea or "").strip()
-        if not api_key:
+        resolved_key = (api_key or "").strip() or os.getenv("XAI_API_KEY", "").strip() or os.getenv("GROK_API_KEY", "").strip()
+        if not resolved_key:
             return ("Error: API key required.",)
         if not idea:
             return ("Please provide a short description of your image idea.",)
@@ -53,7 +55,7 @@ class QwenImagePrompter:
         ]
 
         headers = {
-            "Authorization": f"Bearer {api_key}",
+            "Authorization": f"Bearer {resolved_key}",
             "Content-Type": "application/json",
         }
 

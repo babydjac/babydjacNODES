@@ -1,3 +1,5 @@
+import os
+
 import requests
 import json
 import torch
@@ -248,7 +250,8 @@ class WAN22PromptStudioNode:
                              shot_type, time_of_day, temperature, api_key="", image=None, specific_subject="",
                              environment="", mood_keywords="", technical_specs=""):
 
-        if not api_key.strip():
+        resolved_key = (api_key or "").strip() or os.getenv("XAI_API_KEY", "").strip() or os.getenv("GROK_API_KEY", "").strip()
+        if not resolved_key:
             return ("Error: Grok API key is required for expert WAN 2.2 prompting.", "No API key provided", "Configure your X.AI API key")
 
         # Allow empty user idea if image is provided
@@ -268,7 +271,7 @@ class WAN22PromptStudioNode:
 
         # Prepare the API call
         headers = {
-            "Authorization": f"Bearer {api_key.strip()}",
+            "Authorization": f"Bearer {resolved_key}",
             "Content-Type": "application/json"
         }
 

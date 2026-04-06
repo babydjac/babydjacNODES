@@ -1,5 +1,7 @@
-import requests
 import json
+import os
+
+import requests
 
 class FluxDualPromptNode:
     @classmethod
@@ -19,11 +21,12 @@ class FluxDualPromptNode:
     NODE_NAME = "FluxDualPromptNode"
 
     def generate_prompts(self, api_key, idea, model, temperature):
-        if not api_key:
+        resolved_key = (api_key or "").strip() or os.getenv("XAI_API_KEY", "").strip() or os.getenv("GROK_API_KEY", "").strip()
+        if not resolved_key:
             raise ValueError("API key is required")
         url = "https://api.x.ai/v1/chat/completions"
         headers = {
-            "Authorization": f"Bearer {api_key}",
+            "Authorization": f"Bearer {resolved_key}",
             "Content-Type": "application/json"
         }
 
