@@ -2,65 +2,17 @@
 
 Custom ComfyUI nodes for prompting, analysis, latent setup, LoRA loading, taglist tools, and utility workflows.
 
-## Demo Gallery
+## Real UI Demos
 
-Automated demo assets for every registered node are generated into `assets/demos/`.
+These demos are recorded from the actual ComfyUI graph UI while the node is being used in a live workflow.
 
-- Demo format: `.gif` for README preview, `.mp4` companion file for the same node.
-- Verification source: generated from live node execution plus the status manifest at `assets/demos/manifest.json`.
-- Current provider caveats:
-  - `FluxLambdaPrompter` is blocked until `LAMBDA_API_KEY` is provided.
-  - `GrokPonyXLPrompter` currently returns an xAI `400` for the sample request used in demo generation.
-  - `WAN22PromptStudioNode`, `ZImagePromptEngineer`, and `ZImageTurboPromptEngineer` currently surface provider/model errors for the configured xAI model path in this environment.
+### Prompt Merge
 
-### Quick Preview
+Recorded in the real ComfyUI workflow canvas by adding `Prompt Merge`, filling the tag lists, wiring it to a text output node, and running the graph.
 
-#### Flux Prompt Builder
+![Prompt Merge real UI demo](assets/real-demos/PromptMergeNode.gif)
 
-![Flux Prompt Builder demo](assets/demos/FluxPromptBuilder.gif)
-
-#### Latent Size Controller
-
-![Latent Size Controller demo](assets/demos/InteractiveEmptyLatent.gif)
-
-#### HTTP JSON
-
-![HTTP JSON demo](assets/demos/HTTPJsonNode.gif)
-
-#### Safe Tag List Prompt
-
-![Safe Tag List Prompt demo](assets/demos/SafeTagListPromptNode.gif)
-
-### All Node Demos
-
-| Node | Demo |
-| --- | --- |
-| Grok Image Describer | [GIF](assets/demos/NSFWGrokDescriber.gif) · [MP4](assets/demos/NSFWGrokDescriber.mp4) |
-| Grok Image Describer Pro | [GIF](assets/demos/NSFWGrokDescriberPro.gif) · [MP4](assets/demos/NSFWGrokDescriberPro.mp4) |
-| Grok Flux Prompt Optimizer | [GIF](assets/demos/GrokFluxPromptOptimizer.gif) · [MP4](assets/demos/GrokFluxPromptOptimizer.mp4) |
-| Latent Size Controller | [GIF](assets/demos/InteractiveEmptyLatent.gif) · [MP4](assets/demos/InteractiveEmptyLatent.mp4) |
-| LoraFcKingLoader | [GIF](assets/demos/LoraFcKingLoader.gif) · [MP4](assets/demos/LoraFcKingLoader.mp4) |
-| Qwen Image Prompter | [GIF](assets/demos/QwenImagePrompter.gif) · [MP4](assets/demos/QwenImagePrompter.mp4) |
-| Flux Dual Prompt Node (Grok) | [GIF](assets/demos/FluxDualPromptNode.gif) · [MP4](assets/demos/FluxDualPromptNode.mp4) |
-| Flux Lambda Prompter | [GIF](assets/demos/FluxLambdaPrompter.gif) · [MP4](assets/demos/FluxLambdaPrompter.mp4) |
-| Flux Lifestyle Prompt Node | [GIF](assets/demos/FluxLifestylePromptNode.gif) · [MP4](assets/demos/FluxLifestylePromptNode.mp4) |
-| Flux Prompt Builder | [GIF](assets/demos/FluxPromptBuilder.gif) · [MP4](assets/demos/FluxPromptBuilder.mp4) |
-| Grok PonyXL Prompter | [GIF](assets/demos/GrokPonyXLPrompter.gif) · [MP4](assets/demos/GrokPonyXLPrompter.mp4) |
-| Grok to PonyXL Prompt | [GIF](assets/demos/NSFWGrokToPonyXL.gif) · [MP4](assets/demos/NSFWGrokToPonyXL.mp4) |
-| WAN 2.2 Prompt Studio | [GIF](assets/demos/WAN22PromptStudioNode.gif) · [MP4](assets/demos/WAN22PromptStudioNode.mp4) |
-| Z-Image Prompt Engineer | [GIF](assets/demos/ZImagePromptEngineer.gif) · [MP4](assets/demos/ZImagePromptEngineer.mp4) |
-| Z-Image Turbo Prompt Engineer | [GIF](assets/demos/ZImageTurboPromptEngineer.gif) · [MP4](assets/demos/ZImageTurboPromptEngineer.mp4) |
-| Safe Tag List Prompt | [GIF](assets/demos/SafeTagListPromptNode.gif) · [MP4](assets/demos/SafeTagListPromptNode.mp4) |
-| Taglist Prompt | [GIF](assets/demos/TagListPromptNode.gif) · [MP4](assets/demos/TagListPromptNode.mp4) |
-| Template Driven Taglist | [GIF](assets/demos/TemplateDrivenTagListPromptNode.gif) · [MP4](assets/demos/TemplateDrivenTagListPromptNode.mp4) |
-| Grok Prompt Fusion Pro | [GIF](assets/demos/NSFWGrokFusionPro.gif) · [MP4](assets/demos/NSFWGrokFusionPro.mp4) |
-| HTTP JSON | [GIF](assets/demos/HTTPJsonNode.gif) · [MP4](assets/demos/HTTPJsonNode.mp4) |
-| No-Repeat Picker | [GIF](assets/demos/NoRepeatPickerNode.gif) · [MP4](assets/demos/NoRepeatPickerNode.mp4) |
-| Prompt Merge | [GIF](assets/demos/PromptMergeNode.gif) · [MP4](assets/demos/PromptMergeNode.mp4) |
-| Taglist Sanitizer | [GIF](assets/demos/TaglistSanitizerNode.gif) · [MP4](assets/demos/TaglistSanitizerNode.mp4) |
-| Text Cache | [GIF](assets/demos/TextCacheNode.gif) · [MP4](assets/demos/TextCacheNode.mp4) |
-| Weight Adjust | [GIF](assets/demos/WeightAdjustNode.gif) · [MP4](assets/demos/WeightAdjustNode.mp4) |
-| Prompt Rotator (Dynamic Batch) | [GIF](assets/demos/DynamicPromptBatcher.gif) · [MP4](assets/demos/DynamicPromptBatcher.mp4) |
+Video file: [PromptMergeNode.mp4](assets/real-demos/PromptMergeNode.mp4)
 
 ## Install
 
