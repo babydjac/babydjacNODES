@@ -2,6 +2,18 @@
 
 Custom ComfyUI nodes for prompting, analysis, latent setup, LoRA loading, taglist tools, and utility workflows.
 
+## Real UI Demos
+
+These demos are recorded from the actual ComfyUI graph UI while the node is being used in a live workflow.
+
+### Prompt Merge
+
+Recorded in the real ComfyUI workflow canvas by adding `Prompt Merge`, filling the tag lists, wiring it to a text output node, and running the graph.
+
+![Prompt Merge real UI demo](assets/real-demos/PromptMergeNode.gif)
+
+Video file: [PromptMergeNode.mp4](assets/real-demos/PromptMergeNode.mp4)
+
 ## Install
 
 1. Clone this repository into `ComfyUI/custom_nodes/` as `babydjacNODES`.
